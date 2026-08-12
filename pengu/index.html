@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Demo 02 · Writing Desk</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <div class="desktop-stars" aria-hidden="true"></div>
+  <main class="computer">
+    <header class="titlebar"><div class="traffic"><i></i><i></i><i></i></div><a href="../"><img src="assets/launcher-pengu.png" alt=""><b>PENGU WRITING DESK · DEMO 02</b></a><button id="modeButton">NIGHT</button></header>
+    <div class="screen">
+      <aside class="sidebar">
+        <div class="pengu-logo"><span>▟█▙<br>▜●▛<br>▟▲▙</span><b>PENGU</b><small>WRITING WORKSHOP</small></div>
+        <nav><button data-panel="brief" class="is-active"><b>01</b> 写作任务</button><button data-panel="outline"><b>02</b> 大纲路线</button><button data-panel="generate"><b>03</b> 生成过程</button><button data-panel="compare"><b>04</b> 候选比较</button><button data-panel="essay"><b>05</b> 完整成品</button></nav>
+        <footer><span><i></i>STATIC MODE</span><small>不会调用 API<br>不会保存输入</small></footer>
+      </aside>
+
+      <section class="workspace">
+        <header class="workspace-head"><div><span id="panelCode">01 / INPUT</span><h1 id="panelTitle">写作任务</h1></div><div class="status-chip">演示数据已载入</div></header>
+
+        <section class="panel brief-panel" id="briefPanel">
+          <div class="form-grid"><article class="task-card"><label>文章命题</label><textarea id="taskInput" rows="4"></textarea><small>命题为演示专用，与任何真实用户资料无关。</small></article><article class="persona-card"><span>NARRATOR PROFILE</span><h2>清醒的荒诞观察者</h2><p>先核对事实，再把日常温情翻到权力背面；允许幽默，但不拿动物知识开玩笑。</p><ul><li>判断方式：事实边界优先</li><li>情绪距离：克制但不冷漠</li><li>结构偏好：场景—概念—回扣</li></ul></article></div>
+          <div class="controls"><label>文体<select><option>思想散文 / 社会学随笔</option></select></label><label>目标字数<select><option>约 2,500 字</option></select></label><label>质量倾向<div class="quality"><input type="range" min="0" max="100" value="78"><b>78</b></div></label><label class="check"><input type="checkbox" checked> 降低模板感</label></div>
+          <article class="brief-note"><b>本题写作要求</b><p>从动物学事实出发，探讨照护幻想、权力、社会归属和荒诞；不把企鹅或北极熊拟人化成虚假知识。</p></article>
+          <button class="primary" data-go="outline">生成四份大纲路线 →</button>
+        </section>
+
+        <section class="panel outline-panel is-hidden" id="outlinePanel"><div class="outline-grid" id="outlineGrid"></div><footer class="panel-footer"><span id="outlineChoiceText">请选择一条写作路线</span><button class="primary" id="chooseOutline" disabled>使用这份大纲 →</button></footer></section>
+
+        <section class="panel generate-panel is-hidden" id="generatePanel">
+          <div class="skate-stage"><div class="sky-label">SIX DRAFTS / ONE ROUTE</div><div class="skate-track"><div class="skater" id="skater"><span>▟█▙<br>▜●▛<br>▟▲▙</span><i></i></div><div class="checkpoint c1">种子</div><div class="checkpoint c2">大纲</div><div class="checkpoint c3">初稿</div><div class="checkpoint c4">评分</div></div></div>
+          <div class="generation-console"><header><span>GENERATION LOG</span><b id="generationPercent">0%</b></header><div class="progress-bar"><i id="generationFill"></i></div><ol id="generationLog"><li>等待开始</li></ol></div>
+          <button class="primary" id="startGeneration">让企鹅出发 →</button>
+        </section>
+
+        <section class="panel compare-panel is-hidden" id="comparePanel"><div class="compare-summary"><div><span>BATCH REVIEW</span><h2>六份候选，统一评分</h2></div><p>所有候选回答同一份任务，因此可以比较结构、声音和事实风险。</p></div><div class="candidate-grid" id="candidateGrid"></div><footer class="panel-footer"><span>候选 04 综合分最高</span><button class="primary" data-go="essay">阅读完整成品 →</button></footer></section>
+
+        <section class="panel essay-panel is-hidden" id="essayPanel"><article class="essay-paper"><header><span>SELECTED DRAFT · 04</span><h1 id="essayTitle"></h1><p id="essaySubtitle"></p><div><b>2,500 字级</b><b>综合评分 95</b><b>事实风险：低</b></div></header><div id="essayBody"></div><footer><span>静态演示成品</span><button id="copyDemo">模拟复制</button></footer></article></section>
+      </section>
+    </div>
+    <footer class="statusbar"><span>READY</span><span>NO NETWORK</span><span>DEMO 02 / LOCAL STATIC</span></footer>
+  </main>
+  <div class="toast is-hidden" id="toast"></div>
+  <script src="demo-data.js"></script><script src="demo.js"></script>
+</body>
+</html>

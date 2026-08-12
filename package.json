@@ -1,0 +1,8 @@
+{
+  "name": "demo-02-static",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "node verify.mjs"
+  }
+}

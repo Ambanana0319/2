@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Demo 02 · Story Route</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../" class="brand"><img src="assets/gugu-launcher.png" alt=""><span><b>Gugu</b><small>STATIC STORY ROUTE</small></span></a>
+    <nav aria-label="演示页面"><button data-view="library" class="is-active">项目库</button><button data-view="reader">正文阅读</button><button data-view="route">航线图</button></nav>
+    <div class="top-actions"><span><i></i>静态演示</span><button id="themeButton" aria-label="切换显示模式">夜间</button></div>
+  </header>
+
+  <main>
+    <section class="view library-view" id="libraryView">
+      <header class="page-heading"><div><p>MANUSCRIPT INDEX / DEMO 02</p><h1>项目管理</h1></div><span>1 个演示项目</span></header>
+      <section class="overview-strip"><article><span>已确认正文</span><b>5</b><small>章</small></article><article><span>故事人物</span><b>9</b><small>位</small></article><article><span>故事路线</span><b>5</b><small>阶段</small></article></section>
+      <article class="project-card">
+        <div class="folio-no">01</div>
+        <div class="project-main"><p>CURRENT FOLIO · COMPLETE</p><h2>海的女儿新编</h2><span>一柄匕首、一场远征与一纸海陆盟约</span><div class="progress"><i><b></b></i><small>5 / 5 章 · 约 15,000 字</small></div></div>
+        <aside><span>演示故事</span><b>海滨旧闻</b><p>海上童话改写为一场关于复仇、权力与共同治理的江湖远征。</p></aside>
+        <footer><button data-open-reader>打开正文 →</button><button data-open-route>查看航线图 →</button></footer>
+      </article>
+      <section class="requirements"><header><span>REQUIREMENT TRACK</span><b>四项核心要求均已兑现</b></header><div id="requirementList"></div></section>
+      <footer class="library-footer"><span>所有内容均为本次展示独立创作。</span><span>DEMO DATA · NO API · NO STORAGE</span></footer>
+    </section>
+
+    <section class="view reader-view is-hidden" id="readerView">
+      <aside class="chapter-rail"><header><button data-view="library">← 项目库</button><span>5 CHAPTERS</span></header><ol id="chapterList"></ol><footer><b>海的女儿新编</b><span>演示全书已完成</span></footer></aside>
+      <article class="manuscript">
+        <header class="manuscript-head"><div><span id="chapterNo">第一章</span><h1 id="chapterTitle"></h1><p id="chapterMeta"></p></div><div><button id="fontMinus">字−</button><button id="fontPlus">字＋</button><button data-open-route>航线图</button></div></header>
+        <div class="chapter-summary" id="chapterSummary"></div>
+        <div class="chapter-body" id="chapterBody"></div>
+        <footer class="reader-footer"><button id="prevChapter">← 上一章</button><span id="readerProgress"></span><button id="nextChapter">下一章 →</button></footer>
+      </article>
+    </section>
+
+    <section class="view route-view is-hidden" id="routeView">
+      <header class="route-head"><div><button data-view="library">← 项目库</button><p>ROUTE / RELATION / PAYOFF</p><h1>航线图</h1></div><div class="route-tabs"><button data-route-tab="story">剧情航线</button><button data-route-tab="relation" class="is-active">人物关系</button></div></header>
+
+      <section class="story-route is-hidden" id="storyRoute"><div class="route-line" id="routeLine"></div><aside><span>DESTINATION</span><h2>白礁潮庭</h2><p>结局不以杀死对手收束，而以公开旧罪、三方监督与停止制造新死者的协议落地。</p></aside></section>
+
+      <section class="relationship-shell" id="relationshipShell">
+        <header class="relationship-toolbar"><div><span><i class="confirmed"></i>当前已发生</span><span><i class="future"></i>尚未发生</span></div><label>查看至第 <input id="chapterRange" type="range" min="1" max="5" value="5"> <b id="rangeValue">5</b> 章</label><button id="futureToggle">隐藏未来</button></header>
+        <div class="relationship-stage"><div class="graph-wrap"><svg id="relationshipGraph" viewBox="0 0 860 470" aria-label="人物关系图"></svg></div><aside class="inspector" id="relationshipInspector"></aside></div>
+      </section>
+      <section class="spoiler-note"><b>剧透隔离演示</b><p>“显示未来”只读取静态演示数据。正式产品中，未来事件在完成二次确认前不会发送给浏览器。</p></section>
+    </section>
+  </main>
+
+  <div class="toast is-hidden" id="toast" role="status"></div>
+  <script src="demo-data.js"></script>
+  <script src="demo.js"></script>
+</body>
+</html>

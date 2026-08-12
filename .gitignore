@@ -1,0 +1,9 @@
+.DS_Store
+.env
+*.log
+*.sqlite3
+*.db
+*.txt
+__pycache__/
+node_modules/
+qa/
