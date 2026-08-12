@@ -2,57 +2,251 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>Demo 02 · Story Route</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafaf8">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Gugu · 原著衍生写作台</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="archive-index.css">
+  <link rel="stylesheet" href="gugu-ui.css">
   <link rel="stylesheet" href="demo.css">
 </head>
 <body>
-  <header class="topbar">
-    <a href="../" class="brand"><img src="assets/gugu-launcher.png" alt=""><span><b>Gugu</b><small>STATIC STORY ROUTE</small></span></a>
-    <nav aria-label="演示页面"><button data-view="library" class="is-active">项目库</button><button data-view="reader">正文阅读</button><button data-view="route">航线图</button></nav>
-    <div class="top-actions"><span><i></i>静态演示</span><button id="themeButton" aria-label="切换显示模式">夜间</button></div>
-  </header>
+  <nav class="showcase-ribbon" aria-label="静态展示导航"><span>STATIC INTERACTION · NO API · NO STORAGE</span><a href="../">总览</a><button type="button" data-showcase-view="library">项目库</button><button type="button" data-showcase-view="create">创建流程</button><button type="button" data-showcase-view="reader">阅读界面</button><a href="../pengu/">Pengu →</a></nav>
+  <div class="grain" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <button class="brand" type="button" id="brandButton" aria-label="返回项目库">
+        <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+        <span class="brand-word" aria-label="Gugu"><span class="brand-main" aria-hidden="true"><b>G</b><b>U</b></span><span class="brand-fraction" aria-hidden="true"><i>G</i><i>U</i></span></span><small><span>原著衍生</span><em>写作台</em></small>
+      </button>
+      <div class="topbar-status" id="topbarStatus"><span>本地创作空间</span><i aria-hidden="true"></i><em>所有内容留在这台电脑</em></div>
+      <div class="topbar-actions">
+        <button class="quiet-button" type="button" id="sourceManagerButton">原著管理</button>
+        <button class="quiet-button" type="button" id="apiButton">API 设置</button>
+        <button class="circle-button" type="button" id="helpButton">使用说明</button>
+      </div>
+    </header>
 
-  <main>
-    <section class="view library-view" id="libraryView">
-      <header class="page-heading"><div><p>MANUSCRIPT INDEX / DEMO 02</p><h1>项目管理</h1></div><span>1 个演示项目</span></header>
-      <section class="overview-strip"><article><span>已确认正文</span><b>5</b><small>章</small></article><article><span>故事人物</span><b>9</b><small>位</small></article><article><span>故事路线</span><b>5</b><small>阶段</small></article></section>
-      <article class="project-card">
-        <div class="folio-no">01</div>
-        <div class="project-main"><p>CURRENT FOLIO · COMPLETE</p><h2>海的女儿新编</h2><span>一柄匕首、一场远征与一纸海陆盟约</span><div class="progress"><i><b></b></i><small>5 / 5 章 · 约 15,000 字</small></div></div>
-        <aside><span>演示故事</span><b>海滨旧闻</b><p>海上童话改写为一场关于复仇、权力与共同治理的江湖远征。</p></aside>
-        <footer><button data-open-reader>打开正文 →</button><button data-open-route>查看航线图 →</button></footer>
-      </article>
-      <section class="requirements"><header><span>REQUIREMENT TRACK</span><b>四项核心要求均已兑现</b></header><div id="requirementList"></div></section>
-      <footer class="library-footer"><span>所有内容均为本次展示独立创作。</span><span>DEMO DATA · NO API · NO STORAGE</span></footer>
-    </section>
+    <section class="library-view archive-index" id="libraryView">
+      <header class="library-heading">
+        <h1><span>项目管理</span><em aria-hidden="true">manuscript index</em></h1>
+        <span id="projectCountLabel">0 个项目</span>
+      </header>
 
-    <section class="view reader-view is-hidden" id="readerView">
-      <aside class="chapter-rail"><header><button data-view="library">← 项目库</button><span>5 CHAPTERS</span></header><ol id="chapterList"></ol><footer><b>海的女儿新编</b><span>演示全书已完成</span></footer></aside>
-      <article class="manuscript">
-        <header class="manuscript-head"><div><span id="chapterNo">第一章</span><h1 id="chapterTitle"></h1><p id="chapterMeta"></p></div><div><button id="fontMinus">字−</button><button id="fontPlus">字＋</button><button data-open-route>航线图</button></div></header>
-        <div class="chapter-summary" id="chapterSummary"></div>
-        <div class="chapter-body" id="chapterBody"></div>
-        <footer class="reader-footer"><button id="prevChapter">← 上一章</button><span id="readerProgress"></span><button id="nextChapter">下一章 →</button></footer>
-      </article>
-    </section>
+      <section class="library-overview" id="libraryOverview" aria-label="项目库概览"></section>
 
-    <section class="view route-view is-hidden" id="routeView">
-      <header class="route-head"><div><button data-view="library">← 项目库</button><p>ROUTE / RELATION / PAYOFF</p><h1>航线图</h1></div><div class="route-tabs"><button data-route-tab="story">剧情航线</button><button data-route-tab="relation" class="is-active">人物关系</button></div></header>
-
-      <section class="story-route is-hidden" id="storyRoute"><div class="route-line" id="routeLine"></div><aside><span>DESTINATION</span><h2>白礁潮庭</h2><p>结局不以杀死对手收束，而以公开旧罪、三方监督与停止制造新死者的协议落地。</p></aside></section>
-
-      <section class="relationship-shell" id="relationshipShell">
-        <header class="relationship-toolbar"><div><span><i class="confirmed"></i>当前已发生</span><span><i class="future"></i>尚未发生</span></div><label>查看至第 <input id="chapterRange" type="range" min="1" max="5" value="5"> <b id="rangeValue">5</b> 章</label><button id="futureToggle">隐藏未来</button></header>
-        <div class="relationship-stage"><div class="graph-wrap"><svg id="relationshipGraph" viewBox="0 0 860 470" aria-label="人物关系图"></svg></div><aside class="inspector" id="relationshipInspector"></aside></div>
+      <section class="project-book" aria-label="常用项目入口">
+        <svg class="library-composition" viewBox="0 0 1120 468" preserveAspectRatio="none" aria-hidden="true">
+          <path class="composition-main" pathLength="1" d="M8 26 H205 L222 43 H592 L610 26 H1108" />
+          <path class="composition-return" pathLength="1" d="M72 449 H287 L304 432 H780 L798 449 H1052" />
+          <path class="composition-drop" pathLength="1" d="M222 43 V78 M610 26 V61 M304 432 V397 M798 449 V414" />
+          <g class="composition-mark marker-create"><circle cx="8" cy="26" r="3"/><text x="18" y="18">01 / CREATE</text></g>
+          <g class="composition-mark marker-active"><circle cx="592" cy="43" r="3"/><text x="604" y="55">02 / ACTIVE</text></g>
+          <g class="composition-mark marker-index"><circle cx="1108" cy="26" r="3"/><text x="1096" y="18" text-anchor="end">03 / INDEX</text></g>
+          <g class="composition-terminal"><circle cx="72" cy="449" r="3"/><circle cx="1052" cy="449" r="3"/></g>
+        </svg>
+        <button class="new-project-page" type="button" id="newProjectButton">
+          <span class="page-number">01</span>
+          <em class="page-script" aria-hidden="true">New story</em>
+          <span class="new-project-sign" aria-hidden="true">＋</span>
+          <span><b>新建项目</b><small>建立创作卷宗，导入原著与创作前提。</small></span>
+        </button>
+        <article class="current-project-page" id="featuredProject" aria-live="polite"></article>
+        <nav class="book-index" aria-label="项目分类索引">
+          <span>索引</span>
+          <a href="#newProjectButton"><b>01</b> 新建</a>
+          <a href="#featuredProject"><b>02</b> 当前创作</a>
+          <a href="#otherProjectsTitle"><b>03</b> 进行与准备</a>
+          <a href="#archiveTitle"><b>04</b> 完成与归档</a>
+        </nav>
       </section>
-      <section class="spoiler-note"><b>剧透隔离演示</b><p>“显示未来”只读取静态演示数据。正式产品中，未来事件在完成二次确认前不会发送给浏览器。</p></section>
+
+      <section class="project-catalog" aria-labelledby="otherProjectsTitle">
+        <header class="catalog-heading"><h2 id="otherProjectsTitle"><span>正在创作与准备</span><em aria-hidden="true">Works in progress</em></h2><span id="otherProjectsCount">2 个项目</span></header>
+        <svg class="section-composition project-composition" viewBox="0 0 1030 58" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="1" d="M2 15 H242 L258 31 H772 L788 15 H1028" />
+          <path class="section-drop" pathLength="1" d="M258 31 V55 M788 15 V55" />
+          <circle cx="2" cy="15" r="3"/><circle cx="258" cy="31" r="3"/><circle cx="788" cy="15" r="3"/><circle cx="1028" cy="15" r="3"/>
+          <text x="14" y="10">03 / VERSIONS</text>
+        </svg>
+        <div class="project-grid" id="projectGrid"></div>
+      </section>
+
+      <section class="archive-catalog" aria-labelledby="archiveTitle">
+        <header class="catalog-heading"><h2 id="archiveTitle"><span>废弃与归档</span><em aria-hidden="true">Archive</em></h2><span id="archiveProjectCount">0 个版本</span></header>
+        <svg class="section-composition archive-composition" viewBox="0 0 930 52" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="1" d="M2 14 H334 L350 30 H928" />
+          <path class="section-drop" pathLength="1" d="M350 30 V49 M928 14 V38" />
+          <circle cx="2" cy="14" r="3"/><circle cx="350" cy="30" r="3"/><circle cx="928" cy="14" r="3"/>
+          <text x="14" y="9">04 / STORED VERSIONS</text>
+        </svg>
+        <div class="archive-project-list" id="archiveProjectList"><p class="archive-empty">完成、废弃或暂时收起的版本会保存在这里。</p><p class="archive-signature" aria-hidden="true">Archive</p></div>
+      </section>
+
+      <aside class="gugu-vintage-label is-ticket" aria-label="Gugu 本地衍生故事票根">
+        <span class="vintage-label-stitch" aria-hidden="true"></span>
+        <span class="vintage-ticket-border is-top" aria-hidden="true">PASSENGER: THE READER · VESSEL: GUGU · DEPARTURE: WHEN READY</span>
+        <span class="vintage-ticket-border is-bottom" aria-hidden="true">ORIGINAL COORDINATES PRESERVED · RETURN PASS INCLUDED · LOCAL ONLY</span>
+        <div class="vintage-ticket-stub" aria-hidden="true"><small>GU / GU</small><b>01</b><em>BOARDING PASS</em></div>
+        <div class="vintage-ticket-main">
+          <header><span>GUGU INTERSTELLAR READING LINE</span><b>PASSAGE</b><span>GATE 0064</span></header>
+          <div class="vintage-label-body">
+            <b class="vintage-ticket-number">64</b>
+            <div class="vintage-label-title"><small>DESTINATION</small><strong>THE OTHER ENDING</strong><p>原著坐标完整保留 · 从故事分歧处启航</p></div>
+          </div>
+          <p class="vintage-label-motto">A book is a small ship toward another world.</p>
+          <footer><span>DEPARTURE · LOCAL DEVICE</span><i>L × D × F</i><span>ONE READER / ONE UNIVERSE</span></footer>
+        </div>
+      </aside>
+
+      <footer class="library-footer"><span>原著、手稿与设定均保存在本机。</span><span id="projectCountFooter">共 0 个项目</span></footer>
+    </section>
+
+    <section class="source-manager-view is-hidden" id="sourceManagerView" aria-labelledby="sourceManagerTitle">
+      <header class="source-manager-header"><button class="back-button" type="button" id="backFromSources">← 项目库</button><div><p class="eyebrow">ORIGINAL TEXT REGISTER / LOCAL</p><h1 id="sourceManagerTitle">原著管理</h1></div><p>这里管理完整 TXT、分层切割和全书认识。删除故事版本不会删除原著。</p></header>
+      <div class="source-manager-summary" id="sourceManagerSummary" aria-label="原著库概览"></div>
+      <section class="source-register" aria-labelledby="sourceRegisterTitle">
+        <header><div><span>01 / SOURCE REGISTER</span><h2 id="sourceRegisterTitle">本机原著索引</h2></div><p>被任何故事版本使用的原著都会锁定删除；请先处理引用它的版本。</p></header>
+        <div class="source-register-list" id="sourceRegisterList"><p class="source-register-empty">还没有导入原著。</p></div>
+      </section>
+      <footer class="source-manager-footer"><span>TXT 与索引只保存在本机</span><button type="button" id="importSourceFromManager">＋ 导入新的 TXT</button></footer>
+    </section>
+
+    <section class="workbench-view is-hidden" id="workbenchView" aria-live="polite">
+      <header class="workbench-bar">
+        <button class="back-button" type="button" id="backToLibrary">← <span>项目库</span></button>
+        <div class="project-heading"><p id="workbenchSource">原著</p><h1 id="workbenchTitle">故事卷宗</h1></div>
+        <div class="project-progress"><div class="progress-label"><span id="progressWords">0</span><span>/</span><span id="targetWords">0 字</span></div><div class="progress-track"><span id="progressFill"></span></div><small>已确认正文</small></div>
+        <div class="workbench-utilities"><button type="button" id="spoilerEntryButton">航线图</button><button type="button" id="projectSettingsButton">项目设置</button></div>
+      </header>
+      <div class="reading-shell">
+        <aside class="chapter-rail" id="chapterRail">
+          <div class="rail-heading"><div><p class="eyebrow">章节索引</p><strong id="chapterCount">已确认 0 章</strong></div></div>
+          <div class="chapter-filters" aria-label="章节筛选"><button class="is-active" type="button" data-chapter-filter="all">全部</button><button type="button" data-chapter-filter="confirmed">已确认</button><button type="button" data-chapter-filter="draft">草稿</button></div>
+          <ol class="chapter-list" id="chapterList"></ol>
+          <button class="rail-export" type="button" id="exportButton">导出整本书 TXT ↓</button>
+        </aside>
+        <article class="manuscript" id="manuscript">
+          <section class="book-run-panel book-run-console" id="bookRunPanel" aria-labelledby="bookRunTitle">
+            <button class="book-run-collapse" type="button" id="collapseBookRunButton" aria-label="收起整书生成面板">收起 ×</button>
+            <button class="book-run-mini" type="button" id="expandBookRunButton"><span>整书生成</span><i aria-hidden="true"><b id="bookRunMiniFill"></b></i><em id="bookRunMiniStatus">尚未开始</em><strong>展开 ＋</strong></button>
+            <div class="book-run-route" aria-hidden="true"><span>AUTO ROUTE</span><i></i><b>BOOK</b></div>
+            <div class="book-run-heading"><div><p class="eyebrow">整书生成</p><h3 id="bookRunTitle">一键生成整本书</h3></div><span id="bookRunRatio">尚未开始</span></div>
+            <p id="bookRunStatus">从第一章开始，按隐藏路线逐章生成、校验并保存；遇到需要判断的问题会停在原地。</p>
+            <div class="book-run-metrics" aria-label="整书任务估算">
+              <p><span>预计剩余时间</span><b id="bookRunEta">等待大纲</b></p>
+              <p><span>预计整书费用</span><b id="bookRunCost">等待估算</b></p>
+              <p><span>预计 API 调用</span><b id="bookRunApi">等待估算</b></p>
+            </div>
+            <div class="book-run-track" aria-hidden="true"><i id="bookRunFill"></i></div>
+            <div class="book-run-foot"><small id="bookRunEstimateNote">估算会在完成每章后按实际速度和用量自动修正。</small><div class="book-run-actions"><button class="primary-action" type="button" id="startBookRunButton">从第一章生成整本书 →</button><button class="secondary-action is-hidden" type="button" id="pauseBookRunButton">暂停</button><button class="secondary-action is-hidden" type="button" id="resumeBookRunButton">继续</button></div></div>
+          </section>
+          <section class="next-prep-strip" id="nextPrepStrip">
+            <div><span>READ AHEAD</span><b>阅读时准备下一章</b><small id="nextPrepStatus">默认关闭，不会产生额外调用</small></div>
+            <label class="paper-switch"><input type="checkbox" id="nextPrepToggle"><span></span></label>
+            <button type="button" id="openNextPrepPanel">添加补充要求</button>
+          </section>
+          <div class="manuscript-meta"><span class="draft-badge" id="draftBadge">草稿</span><span id="chapterWordCount">0 字</span></div>
+          <div class="chapter-title-row"><p class="eyebrow" id="chapterNumber">等待章节</p><div class="reader-tools"><button type="button" data-font="minus" aria-label="减小字号">A−</button><button type="button" data-font="plus" aria-label="增大字号">A＋</button><label><span>纸色</span><select id="readingThemeSelect" aria-label="阅读背景"><option value="white">白纸</option><option value="warm" selected>米纸</option><option value="night">夜读</option></select></label><label><span>字体</span><select id="readingFontSelect" aria-label="正文字体"><option value="song" selected>宋体</option><option value="kai">楷体</option><option value="sans">黑体</option></select></label><button type="button" id="readingWidthButton">版心</button><button type="button" id="toggleControlDeck">写作工具</button></div></div>
+          <h2 id="chapterTitle">故事尚未开始</h2>
+          <div class="chapter-copy" id="chapterCopy"></div>
+          <textarea class="chapter-editor is-hidden" id="chapterEditor" aria-label="编辑当前章节"></textarea>
+          <footer class="manuscript-footer" id="manuscriptFooter"><span>确认之前，这一章不会进入正式历史。</span><div><button class="text-button" type="button" id="toggleEditorButton">手动修改</button><button class="confirm-action" type="button" id="confirmButton">确认本章 <span>→</span></button></div></footer>
+        </article>
+        <aside class="control-deck is-collapsed" id="controlDeck">
+          <button class="deck-close" type="button" id="closeControlDeck">收起 ×</button>
+          <section class="deck-section active-task"><div class="deck-title"><p class="eyebrow">页边对话</p><span class="signal"></span></div><p class="task-caption">只在需要修改或继续生成时打开。</p></section>
+          <section class="deck-section chapter-dialogue"><div class="dialogue-history" id="dialogueHistory"><p>这一章还没有对话记录。</p></div><label for="chapterRequest">对 Gugu 说</label><textarea id="chapterRequest" rows="4" placeholder="例如：这一段接受得太快，希望他先尝试自己的解释。"></textarea><div class="dialogue-compose-row"><select id="requestScope"><option value="current">只改当前章</option><option value="future">影响未发生部分</option><option value="replan">重排未发生大纲</option></select><button class="secondary-action" type="button" id="sendRequestButton">发送</button></div></section>
+          <section class="deck-section next-prep-panel is-hidden" id="nextPrepPanel"><p class="eyebrow">下一章补充要求</p><div id="nextPrepHistory"></div><textarea id="nextPrepInput" rows="3" placeholder="例如：下一章让他留意到桌上的旧照片。"></textarea><div class="dialogue-compose-row"><button class="secondary-action" type="button" id="sendNextPrepMessage">问问 Gugu</button><button class="primary-action" type="button" id="prepareNextButton">开始准备</button></div></section>
+          <section class="deck-section writer-switcher"><label for="writerQuickSelect">B · 本章写作者</label><select id="writerQuickSelect"></select><small id="writerQuickStatus">可以在章节之间更换。</small></section>
+          <section class="deck-section action-stack"><button class="primary-action" type="button" id="generateButton">生成本章 <span>→</span></button><button class="secondary-action" type="button" id="openCalibrationButton">选择意见影响范围</button><button class="stop-action" type="button" id="stopButton" disabled>停止生成</button></section>
+          <div class="source-note"><span>○</span> 等待原著资料</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="creation-view is-hidden" id="newProjectModal" aria-labelledby="newProjectTitle">
+      <header class="creation-header"><button class="back-button" type="button" data-close="newProjectModal">← 项目库</button><div><p class="eyebrow">NEW STORY / GUGU 0064</p><h1 id="newProjectTitle">从原著开一条新的航线</h1></div><p>原著坐标保留在本机，模型只读取当前步骤需要的材料。</p></header>
+      <nav class="wizard-steps" aria-label="创建步骤"><span class="is-current"><b>01</b><em>原著<small>导入文本，分配两种模型职责</small></em></span><i></i><span><b>02</b><em>坐标<small>选择故事覆盖范围与改写强度</small></em></span><i></i><span><b>03</b><em>规格<small>约定成品类型、重心与落点</small></em></span><i></i><span><b>04</b><em>要求<small>写下真正想看到的改变</small></em></span></nav>
+      <form id="newProjectForm" class="creation-form">
+        <section class="wizard-panel" data-step="1">
+          <div class="panel-ticket"><span>ORIGINAL COORDINATES</span><strong>先把原著带进来</strong><p>可以导入一份新的 TXT；如果这本书已经准备完成，也可以直接复用。</p></div>
+          <label class="project-name-field">故事名称<input id="projectNameInput" required placeholder="例如：虚构原著 · 另一条故事线"></label>
+          <div class="source-mode-switch" role="tablist"><button type="button" id="uploadSourceMode" aria-selected="true">导入新的 TXT</button><button type="button" id="reuseSourceMode" aria-selected="false">使用已有原著</button></div>
+          <section class="source-upload-panel" id="uploadSourcePanel"><label>原著名称<input id="sourceTitleInput" placeholder="原著书名"></label><label class="upload-zone" for="sourceFileInput"><input id="sourceFileInput" type="file" accept=".txt,text/plain"><span class="upload-icon">TXT</span><strong>拖拽到这里，或点击选择</strong><small id="uploadHint">原著会完整保存在这台电脑。</small></label></section>
+          <section class="source-library-panel is-hidden" id="existingSourcePanel"><div class="source-library-list" id="sourceLibraryList"></div><p class="form-help" id="sourceReuseHint">切割、索引和全书认识可以复用；新故事的约定、大纲和章节保持独立。</p></section>
+          <div class="model-role-list"><label><span><b>A · 故事总控</b><small>全书认识、隐藏大纲与章节校验</small><em id="directorStatus">等待选择</em></span><select id="directorApi"></select></label><label><span><b>B · 章节写作者</b><small>只读取当前章节包</small><em id="writerStatus">等待选择</em></span><select id="writerApi"></select></label></div>
+          <p class="model-role-note" id="modelRoleNote"></p><button class="outline-button" type="button" id="openApiFromWizard">管理 API 连接 →</button>
+        </section>
+        <section class="wizard-panel is-hidden" data-step="2">
+          <div class="settings-intro"><p class="eyebrow">02 / STORY COORDINATES</p><h2>故事坐标</h2><p>确定覆盖范围、描写密度和原著约束。拖动线框观察空间，点击节点选择。</p></div>
+          <div class="constraint-layout">
+            <div class="constraint-cube" id="constraintCube"><div class="model-toolbar"><span>64 个可能坐标</span><button type="button" id="modelViewToggle">切换平面视图</button></div><div class="wire-model" id="wireModel"><svg id="cubeScene" viewBox="0 0 560 390" role="img" aria-label="L D F 三轴线框模型"></svg><div class="flat-model is-hidden" id="flatModel"><div id="cubeGrid"></div><p>横轴是描写密度 D，纵轴是覆盖范围 L；用下方 F 选择不同原著约束层。</p></div></div><div class="fidelity-rulers" id="fidelityRulers"><button type="button" data-fidelity-level="0">F0 借用</button><button type="button" data-fidelity-level="1">F1 改写</button><button type="button" data-fidelity-level="2">F2 沿线</button><button type="button" data-fidelity-level="3">F3 还原</button></div><p class="coordinate-reading"><b id="cubeCoordinate">L3 · D2 · F2</b><span id="cubeMeaning">整部小说 / 完整事件 / 沿原著主线</span></p><div class="constraint-equation"><b id="combinationIndex">组合 59 / 64</b><span>L × D × F</span></div></div>
+            <div class="constraint-fields"><label>覆盖范围 L<select id="lLevel"><option value="0">L0 · 一件事或一个场景</option><option value="1">L1 · 一段连续剧情</option><option value="2">L2 · 一条完整主线</option><option value="3" selected>L3 · 整部小说</option></select></label><label>描写密度 D<select id="dLevel"><option value="0">D0 · 只交代结局</option><option value="1">D1 · 说明因果</option><option value="2" selected>D2 · 呈现完整事件</option><option value="3">D3 · 展开为剧场</option></select></label><label>成品预计字数 W<input id="wTarget" type="number" min="300" max="10000000" step="500" value="108000"><small>这是整部成品的预计长度，不是单次生成量。</small></label><label>系统建议哪一项<select id="inferredAxis"><option value="w" selected>建议成品字数 W</option><option value="d">建议描写密度 D</option><option value="l">建议覆盖范围 L</option></select></label><label>单章参考字数<input id="chapterLength" type="number" min="500" max="20000" step="500" value="3500"></label></div>
+          </div>
+          <p class="constraint-notice" id="constraintNotice"></p>
+          <fieldset class="fidelity-field"><legend>原著约束 F</legend><label><input type="radio" name="fidelity" value="0"><b>F0 借用</b><small>使用原著元素讲新故事。</small></label><label><input type="radio" name="fidelity" value="1"><b>F1 改写</b><small>从原著出发改变主线。</small></label><label><input type="radio" name="fidelity" value="2" checked><b>F2 沿线</b><small>保留事件脉络，允许部分结局变化。</small></label><label><input type="radio" name="fidelity" value="3"><b>F3 还原</b><small>遵守主要事实、因果与结局条件。</small></label></fieldset>
+        </section>
+        <section class="wizard-panel is-hidden" data-step="3">
+          <div class="settings-intro"><p class="eyebrow">03 / OUTPUT SPEC</p><h2>成品规格</h2><p>说明成品类型、叙事重心、视角中心与结局方向。</p></div>
+          <div class="style-spec-board">
+            <div class="spec-route" aria-hidden="true"><span>OUTPUT CONTRACT</span><i></i><b>03</b><i></i><span>READER EXPERIENCE</span></div>
+            <div class="style-fields"><label data-spec-index="A / FORM">成品类型<input id="productTypeInput" placeholder="例如：《三体》式的长篇科幻小说"><small>说明最终拿到的是怎样的一部作品。</small></label><label class="style-main-field" data-spec-index="B / FOCUS">叙事重心<textarea id="styleTextInput" rows="7" placeholder="例如：剧情为主，杂糅少量克制的感情描写。"></textarea><small>决定篇幅更多用于推进剧情、关系还是氛围。</small></label><label data-spec-index="C / VIEW">视角中心<input id="viewpointInput" placeholder="例如：主要跟随罗辑，必要时切到三体人视角"><small>是故事关注谁，不等同于第一或第三人称。</small></label><label data-spec-index="D / END">结局形态<select id="endingTypeInput"><option value="不预设" selected>不预设，让故事自然抵达</option><option value="封闭式喜剧结局">封闭式 · 喜剧</option><option value="封闭式悲剧结局">封闭式 · 悲剧</option><option value="开放式结局">开放式结局</option><option value="苦乐参半的结局">苦乐参半</option><option value="由核心要求决定">跟随核心要求</option></select><small>只约定落点的气质，不提前规定具体情节。</small></label><div class="style-prompts"><span>快速补充</span><button type="button" data-style-prompt="长篇科幻小说">长篇科幻</button><button type="button" data-style-prompt="剧情为主">剧情为主</button><button type="button" data-style-prompt="少量感情描写">少量感情</button><button type="button" data-style-prompt="克制">克制</button></div></div>
+            <aside class="spec-side-note"><b>规格不是剧情</b><p>这里校准成品的读感；必须发生的内容、人物变化与禁区放在下一步。</p><span>SPEC / 04 REQUIREMENTS →</span></aside>
+          </div>
+        </section>
+        <section class="wizard-panel is-hidden" data-step="4">
+          <div class="premise-layout"><div class="premise-card"><p class="eyebrow">04 / REQUIREMENTS</p><h2>核心要求</h2><p>写下需要改变的情节、必须出现的场面、人物关系，以及不能发生的内容。</p><textarea id="premiseText" rows="15" placeholder="把这条故事线必须满足的要求告诉 Gugu……"></textarea></div><div class="premise-chat"><div class="chat-head"><span>Gugu · 必要澄清</span><small id="briefReadiness">还没有开始询问</small></div><div class="chat-history" id="wizardChatHistory"><div class="chat-bubble assistant">写好核心要求后，可以让我检查是否还缺少会影响大纲的关键信息。</div></div><div class="chat-compose"><textarea id="wizardChatInput" rows="3" placeholder="补充要求，或回答 Gugu 的问题"></textarea><button type="button" id="wizardChatSend">发送</button></div><button class="clear-chat" type="button" id="clearWizardChat">按目前内容继续，不再追问</button></div></div>
+        </section>
+      </form>
+      <footer class="wizard-footer"><button class="text-button" type="button" id="wizardPrevious" disabled>← 上一步</button><span id="wizardStepText">第 1 步，共 4 步</span><button class="primary-action" type="button" id="wizardNext">下一步 →</button></footer>
     </section>
   </main>
+
+  <div class="modal-layer is-hidden" id="apiModal" role="dialog" aria-modal="true" aria-labelledby="apiModalTitle">
+    <section class="modal api-modal"><button class="modal-close" type="button" data-close="apiModal" aria-label="关闭">×</button><div class="modal-heading"><p class="eyebrow">本机 API 库</p><h2 id="apiModalTitle">模型与连接</h2><p>密钥只进入 macOS 钥匙串；页面与日志均不保存明文。绿色圆点只表示最近一次连接测试成功。</p></div><div class="api-layout"><div><div class="api-list" id="apiList"></div><button class="outline-button" type="button" id="newApiProfile">＋ 新建连接</button></div><form class="api-form" id="apiForm"><input id="apiIdInput" type="hidden"><div class="api-form-heading"><p class="eyebrow" id="apiFormTitle">新建配置</p><span id="apiTestState">尚未测试</span></div><label>配置名称<input id="apiNameInput" required placeholder="例如：我的 DeepSeek"></label><label>Base URL<input id="apiUrlInput" required placeholder="https://api.deepseek.com"></label><label>模型名称<input id="apiModelInput" required placeholder="deepseek-chat"></label><div class="form-pair"><label>超时<input id="apiTimeoutInput" type="number" value="120" min="5" max="600"></label><label>API Key<input id="apiKeyInput" type="password" autocomplete="off" placeholder="留空则不修改已保存密钥"></label></div><fieldset class="api-pricing"><legend>计费单价 · 人民币 / 100 万 Token</legend><div><label>输入<input id="apiInputRate" type="number" min="0" step="0.0001" placeholder="例如 4"></label><label>缓存输入<input id="apiCachedInputRate" type="number" min="0" step="0.0001" placeholder="例如 1"></label><label>输出<input id="apiOutputRate" type="number" min="0" step="0.0001" placeholder="例如 12"></label></div><small id="apiPricingNote">请按服务商账单页填写；留空时仍记录 Token，但不显示人民币费用估算。</small></fieldset><div class="api-form-actions"><button class="secondary-action" type="button" id="testApiButton">测试当前连接</button><button class="primary-action" type="submit">保存配置</button></div></form></div></section>
+  </div>
+
+  <div class="modal-layer is-hidden" id="projectSettingsModal" role="dialog" aria-modal="true" aria-labelledby="projectSettingsTitle">
+    <section class="modal project-settings-modal"><button class="modal-close" type="button" data-close="projectSettingsModal" aria-label="关闭">×</button><div class="modal-heading"><p class="eyebrow">项目管理</p><h2 id="projectSettingsTitle">模型、原著与高级入口</h2><p>故事总控在全书阅读开始后锁定；章节写作者可以随时更换。</p></div><div class="project-settings-grid"><label><span>A · 故事总控</span><select id="directorSettingsSelect"></select><small id="directorLockNote"></small></label><label><span>B · 章节写作者</span><select id="writerSettingsSelect"></select><small>下一次生成开始使用新写作者。</small></label></div><div class="project-source-card" id="projectSourceCard"></div><div class="project-settings-actions"><button class="secondary-action" type="button" id="reindexSourceButton">重新建立切割索引</button><button class="secondary-action" type="button" id="startSourceAnalysisButton">开始全书阅读</button><button class="outline-button" type="button" id="openSpoilerFromSettings">剧透高级入口</button><button class="primary-action" type="button" id="saveProjectSettings">保存项目设置</button></div></section>
+  </div>
+
+  <div class="modal-layer is-hidden" id="calibrationModal" role="dialog" aria-modal="true" aria-labelledby="calibrationTitle">
+    <section class="modal calibration-modal"><button class="modal-close" type="button" data-close="calibrationModal" aria-label="关闭">×</button><p class="eyebrow">页边对话</p><h2 id="calibrationTitle">这条要求要影响哪里？</h2><p>Gugu 不会替你猜。当前章可以直接重写；后续要求会成为未来约束；推翻未来会重新规划所有尚未发生内容。</p><textarea id="calibrationInput" rows="7" placeholder="例如：他接受得太快了，希望先尝试用自己的方式解释。"></textarea><div class="choice-row"><label><input type="radio" name="wishScope" value="current" checked> 当前章节</label><label><input type="radio" name="wishScope" value="future"> 未发生的未来</label><label><input type="radio" name="wishScope" value="replan"> 推翻未来并重排</label></div><footer><button class="text-button" type="button" data-close="calibrationModal">取消</button><button class="primary-action" type="button" id="applyCalibrationButton">确认这条要求 →</button></footer></section>
+  </div>
+
+  <div class="modal-layer is-hidden" id="spoilerModal" role="dialog" aria-modal="true" aria-labelledby="spoilerTitle"><section class="modal spoiler-modal"><button class="modal-close" type="button" data-close="spoilerModal" aria-label="关闭">×</button><p class="eyebrow" id="storyMapEyebrow">SEALED ROUTE · 尚未发生的内容</p><div class="spoiler-heading"><h2 id="spoilerTitle">航线图封条</h2><div class="story-map-tabs" aria-label="航线图类型"><button type="button" id="relationshipMapTab">人物关系</button><button type="button" id="outlineMapTab">剧情航线 · 未来</button></div><div class="outline-layout-switch is-hidden" id="outlineLayoutSwitch" aria-label="大纲排列方式"><button class="is-active" type="button" data-outline-layout="parallel">横向时间图</button><button type="button" data-outline-layout="vertical">纵向列表</button></div></div><div id="spoilerContent"></div></section></div>
+
+  <div class="modal-layer is-hidden" id="deleteConfirmModal" role="dialog" aria-modal="true" aria-labelledby="deleteConfirmTitle">
+    <section class="modal delete-confirm-modal"><button class="modal-close" type="button" data-close="deleteConfirmModal" aria-label="关闭">×</button><p class="eyebrow" id="deleteConfirmEyebrow">PERMANENT DELETE</p><h2 id="deleteConfirmTitle">彻底删除</h2><p id="deleteConfirmDescription"></p><div class="delete-impact" id="deleteImpact"></div><label for="deleteConfirmInput">输入完整名称以确认<input id="deleteConfirmInput" autocomplete="off"></label><small>删除前会在本机留下恢复点；这个操作不会自动删除其他原著或故事版本。</small><footer><button class="text-button" type="button" data-close="deleteConfirmModal">取消</button><button class="danger-action" type="button" id="confirmPermanentDelete" disabled>确认彻底删除</button></footer></section>
+  </div>
+
+  <div class="modal-layer is-hidden" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <section class="modal help-modal"><button class="modal-close" type="button" data-close="helpModal" aria-label="关闭">×</button>
+      <header class="help-heading"><p class="eyebrow">GUGU / FLIGHT MANUAL 0064</p><h2 id="helpTitle">使用说明</h2><p>从一部已经存在的小说出发，建立一条只属于你的新故事线。</p></header>
+      <div class="help-route" aria-label="新建故事的四个步骤">
+        <article><span>01</span><div><b>原著</b><p>导入新的 TXT，或复用已经切割和阅读过的原著。A 负责全书总控，B 负责逐章写作。</p></div></article>
+        <i aria-hidden="true"></i>
+        <article><span>02</span><div><b>坐标</b><p>L 决定改多大范围，D 决定写多细，W 是成品总长度，F 决定多大程度遵守原著。</p></div></article>
+        <i aria-hidden="true"></i>
+        <article><span>03</span><div><b>规格</b><p>约定作品类型、叙事重心、视角中心和结局气质。这些决定“读起来像什么”。</p></div></article>
+        <i aria-hidden="true"></i>
+        <article><span>04</span><div><b>要求</b><p>写下必须发生的变化、场面、关系和禁区。Gugu 只在确实影响大纲时追问。</p></div></article>
+      </div>
+      <div class="help-doc-grid">
+        <section><span>READ</span><h3>原著怎样被使用</h3><p>原著完整保存在本机。系统先建立分层切割和全书认识，后续每章只取回相关原文，不会反复发送整本书。</p></section>
+        <section><span>WRITE</span><h3>章节怎样成为正文</h3><p>写作者只拿当前章节包；总控根据隐藏路线校验。草稿经确认后才进入正式连续性，未确认内容不会污染后文。</p></section>
+        <section><span>SPOILER</span><h3>未来信息怎样隔离</h3><p>总控可以了解结局，但写作者只看到当前可知信息。隐藏路线放在阅读页的高级入口，并有二次剧透确认。</p></section>
+        <section><span>RUN</span><h3>整本书怎样生成</h3><p>可以逐章生成，也可以一键连续生成。系统会逐章写作、校验、确认并保存；遇到无法自动修复的问题会停在原地。</p></section>
+      </div>
+      <footer class="help-note"><b>本地优先</b><span>原著、索引、草稿和正式章节都保存在这台电脑；API 只接收当前任务所需材料。</span><button type="button" data-close="helpModal">知道了 →</button></footer>
+    </section>
+  </div>
 
   <div class="toast is-hidden" id="toast" role="status"></div>
   <script src="demo-data.js"></script>
   <script src="demo.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
