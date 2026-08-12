@@ -58,7 +58,7 @@ for (const file of files) {
   }
 }
 
-for (const path of ["gugu/app.js", "gugu/demo.js", "pengu/demo.js"]) {
+for (const path of ["gugu/demo.js", "pengu/demo.js"]) {
   const source = await readFile(new URL(path, root), "utf8");
   new vm.Script(source, { filename: path });
 }
@@ -66,8 +66,8 @@ for (const path of ["gugu/app.js", "gugu/demo.js", "pengu/demo.js"]) {
 const guguHtml = await readFile(new URL("gugu/index.html", root), "utf8");
 const penguHtml = await readFile(new URL("pengu/index.html", root), "utf8");
 const requiredIds = {
-  "gugu/index.html": ["wizardNext", "wizardPrevious", "chapterList", "chapterCopy", "readingThemeSelect", "nextPrepToggle"],
-  "pengu/index.html": ["showcasePenguDemo", "btnGenerateOutlines", "btnStartEssays", "step2", "step3", "progressFill", "progressText", "essayContainer"]
+  "gugu/index.html": ["wizardNext", "wizardPrevious", "chapterList", "chapterCopy", "readingThemeSelect", "nextPrepToggle", "themeToggleButton", "spoilerContent", "relationshipMapTab", "outlineMapTab"],
+  "pengu/index.html": ["modeToggle", "btnGenerateOutlines", "btnStartEssays", "step2", "step3", "progressFill", "progressText", "essayContainer"]
 };
 for (const [name, ids] of Object.entries(requiredIds)) {
   const html = name.startsWith("gugu/") ? guguHtml : penguHtml;
@@ -80,5 +80,13 @@ const inlineScripts = [...penguHtml.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/s
   .map((match) => match[1].trim())
   .filter(Boolean);
 for (const [index, source] of inlineScripts.entries()) new vm.Script(source, { filename: `pengu-inline-${index + 1}.js` });
+
+const guguApp = await readFile(new URL("gugu/app.js", root), "utf8");
+for (const marker of ["spoiler-seal-hints", "spoiler-route-tree", "relationshipViewChapter", "要求兑现轨"]) {
+  if (!guguApp.includes(marker)) throw new Error(`Missing current Gugu feature marker: ${marker}`);
+}
+for (const marker of ["penguFarewell", "essayScoreText", "stage === 'scoring'", "penguFinishHold"]) {
+  if (!penguHtml.includes(marker)) throw new Error(`Missing current Pengu feature marker: ${marker}`);
+}
 
 console.log(`Static showcase verification passed (${files.length} files, ${inlineScripts.length} inline scripts).`);

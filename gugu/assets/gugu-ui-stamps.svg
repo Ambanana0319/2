@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="manual-stamp" viewBox="0 0 150 150">
+    <g fill="none" stroke="currentColor" vector-effect="non-scaling-stroke">
+      <circle cx="77" cy="73" r="62" stroke-width="1" opacity=".22"/>
+      <circle cx="74" cy="75" r="61" stroke-width="1.7" stroke-dasharray="84 5 22 4" opacity=".8"/>
+      <circle cx="74" cy="75" r="52" stroke-width="1" stroke-dasharray="3 2" opacity=".58"/>
+      <path d="M24 48H124M21 103H127" opacity=".66"/>
+      <path d="M31 40Q74 22 117 40M31 111Q74 128 117 111M15 70H28M120 70H134" opacity=".25"/>
+      <path d="M35 75H48M100 75H113" stroke-width="2" opacity=".7"/>
+    </g>
+    <g fill="currentColor" text-anchor="middle" font-family="Didot, 'Bodoni 72', 'Times New Roman', serif">
+      <text x="74" y="31" font-size="6" font-weight="600" letter-spacing="1.15">FLIGHT · MANUAL · LOCAL</text>
+      <text x="74" y="44" font-size="4.5" font-style="italic" letter-spacing=".7">Reading office / verified copy</text>
+      <text x="74" y="74" font-size="13" font-weight="700" letter-spacing="1.2">TERMS</text>
+      <text x="74" y="95" font-size="15" font-weight="700" letter-spacing="2" font-family="'Courier New', monospace">01</text>
+      <text x="74" y="119" font-size="5.5" font-weight="600" letter-spacing="1">READ · MARK · RETURN</text>
+    </g>
+  </symbol>
+
+  <symbol id="route-stamp" viewBox="0 0 170 120">
+    <g fill="none" stroke="currentColor" vector-effect="non-scaling-stroke">
+      <rect x="12" y="18" width="146" height="84" rx="38" opacity=".2"/>
+      <rect x="9" y="16" width="146" height="84" rx="38" stroke-width="1.7" stroke-dasharray="73 4 21 3" opacity=".82"/>
+      <rect x="17" y="24" width="130" height="68" rx="31" stroke-dasharray="3 2" opacity=".6"/>
+      <path d="M27 43H137M27 79H137" opacity=".62"/>
+      <path d="M3 39H28M137 39H166M3 46H25M140 46H166M3 53H22M143 53H166" opacity=".25"/>
+      <path d="M34 62H49M115 62H130" stroke-width="2" opacity=".74"/>
+    </g>
+    <g fill="currentColor" text-anchor="middle" font-family="Didot, 'Bodoni 72', 'Times New Roman', serif">
+      <text x="82" y="36" font-size="6" font-weight="600" letter-spacing="1.15">ROUTE ARCHIVE · CLEARANCE</text>
+      <text x="82" y="62" font-size="13" font-weight="700" font-style="italic" letter-spacing="1.2">Future Check</text>
+      <text x="82" y="76" font-size="12" font-weight="700" letter-spacing="2" font-family="'Courier New', monospace">02</text>
+      <text x="82" y="91" font-size="5.5" font-weight="600" letter-spacing="1">VIEW · CONFIRM · PROCEED</text>
+      <text x="82" y="103" font-size="4.5" letter-spacing=".7">BRANCH / RELATION / ENDING</text>
+    </g>
+  </symbol>
+
+  <symbol id="workbench-stamp" viewBox="0 0 150 130">
+    <g fill="none" stroke="currentColor" vector-effect="non-scaling-stroke">
+      <path d="M16 25H132L140 34V105H8V34Z" opacity=".2"/>
+      <path d="M13 22H129L137 31V102H5V31Z" stroke-width="1.7" stroke-dasharray="73 4 21 3" opacity=".82"/>
+      <path d="M21 30H121L129 38V94H13V38Z" stroke-dasharray="3 2" opacity=".6"/>
+      <path d="M22 49H120M22 84H120" opacity=".62"/>
+      <path d="M5 31L16 42M137 31L126 42M5 102L16 91M137 102L126 91" opacity=".25"/>
+      <path d="M29 60H43M99 60H113" stroke-width="2" opacity=".74"/>
+    </g>
+    <g fill="currentColor" text-anchor="middle" font-family="Didot, 'Bodoni 72', 'Times New Roman', serif">
+      <text x="71" y="43" font-size="6" font-weight="600" letter-spacing="1.15">CHAPTER DESK · 03</text>
+      <text x="71" y="66" font-size="13" font-weight="700" font-style="italic" letter-spacing="1.2">Draft Office</text>
+      <text x="71" y="80" font-size="6" font-weight="700" letter-spacing="1" font-family="'Courier New', monospace">CURRENT</text>
+      <text x="71" y="94" font-size="5.5" font-weight="600" letter-spacing="1">WRITE · REVISE · COMMIT</text>
+      <text x="71" y="105" font-size="4.5" letter-spacing=".7">MODEL B / LOCAL CHAPTER</text>
+    </g>
+  </symbol>
+
+  <symbol id="settings-stamp" viewBox="0 0 150 150">
+    <g fill="none" stroke="currentColor" vector-effect="non-scaling-stroke">
+      <circle cx="77" cy="73" r="60" opacity=".2"/>
+      <circle cx="74" cy="75" r="60" stroke-width="1.7" stroke-dasharray="2 1.5" opacity=".82"/>
+      <circle cx="74" cy="75" r="49" stroke-dasharray="3 2" opacity=".6"/>
+      <path d="M24 53H124M24 98H124" opacity=".62"/>
+      <path d="M38 38L43 43M105 38L100 43M38 112L43 107M105 112L100 107" opacity=".25"/>
+      <path d="M30 75H43M105 75H118" stroke-width="2" opacity=".74"/>
+    </g>
+    <g fill="currentColor" text-anchor="middle" font-family="Didot, 'Bodoni 72', 'Times New Roman', serif">
+      <text x="74" y="36" font-size="6" font-weight="600" letter-spacing="1.15">PROJECT · CONTROL · LOCAL</text>
+      <text x="74" y="48" font-size="4.5" font-style="italic" letter-spacing=".7">Models A + B / source registry</text>
+      <text x="74" y="77" font-size="13" font-weight="700" letter-spacing="1.2">REGISTER</text>
+      <text x="74" y="94" font-size="15" font-weight="700" letter-spacing="2" font-family="'Courier New', monospace">04</text>
+      <text x="74" y="113" font-size="5.5" font-weight="600" letter-spacing="1">MODELS · SOURCE · STYLE</text>
+    </g>
+  </symbol>
+</svg>

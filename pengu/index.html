@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex,nofollow">
     <title>Pengu · 像素论文工坊</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Silkscreen&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="demo-data.js"></script>
+    <script src="demo.js"></script>
     <style>
         @font-face {
             font-family: 'Zpix';
@@ -1297,7 +1297,7 @@
             position: fixed !important; z-index: 2100 !important;
             width: 34px; height: 30px; margin: 0;
             display: block !important; pointer-events: none;
-            transform: none !important;
+            transform: none;
             will-change: transform, opacity;
         }
         /* 进度条 */
@@ -2324,12 +2324,8 @@
             .radio-group.style-cards { flex-direction: column; }
         }
     </style>
-    <link rel="stylesheet" href="demo.css">
-    <script src="demo-data.js"></script>
-    <script src="demo.js"></script>
 </head>
 <body>
-<nav class="showcase-ribbon" aria-label="静态展示导航"><span>STATIC INTERACTION · NO API · NO STORAGE</span><a href="../">总览</a><a href="../gugu/">← Gugu</a><a href="#articleWinFrame">写作台</a><button type="button" id="showcasePenguDemo">播放全程演示 ▶</button><a href="#">Pengu</a></nav>
 <div class="main-window">
     <span class="arcade-rivet tl" aria-hidden="true"></span>
     <span class="arcade-rivet tr" aria-hidden="true"></span>
@@ -2468,7 +2464,12 @@
                 <h3>学科选择</h3>
                 <div class="discipline-row">
                     <select id="discipline" onchange="updateDisciplineTemplateLabel(); markOutlinesStale();">
-                        <option value="cs_ai">计算机科学(AI方向)</option><option value="history">历史学</option><option value="literature">文学研究</option><option value="marxism">马克思主义哲学</option><option value="mechanical_engineering">机械工程(热流体)</option><option value="molecular_bio">分子生物学</option>
+                        <option value="cs_ai">计算机科学（AI 方向）</option>
+                        <option value="history">历史学</option>
+                        <option value="literature">文学研究</option>
+                        <option value="marxism">马克思主义哲学</option>
+                        <option value="mechanical_engineering">机械工程（热流体）</option>
+                        <option value="molecular_bio">分子生物学</option>
                     </select>
                     <button type="button" id="freeToggle" class="free-toggle free-mode-entry" onclick="toggleFreeMode()">自由综合</button>
                 </div>
@@ -2866,7 +2867,11 @@
     let formatPreviewConfirmed = false;
     let apiSettingsState = {profiles: [], active_profile: 'deepseek'};
     const ENGLISH_LEVELS = ['A2', 'B1', 'B2', 'C1', 'C2'];
-    const READER_PROFILE_QUESTIONS = {"essay": {"note_label": "\u5173\u4e8e\u8fd9\u4f4d\u8001\u5e08\u7684\u8865\u5145\u63cf\u8ff0\uff08\u9009\u586b\uff09", "note_placeholder": "\u4f8b\u5982\uff1a\u4ed6\u613f\u610f\u542c\u5b66\u751f\u7684\u4e2a\u4eba\u5224\u65ad\uff0c\u4f46\u4e0d\u559c\u6b22\u628a\u8bfe\u7a0b\u5185\u5bb9\u5b8c\u5168\u629b\u5f00\u3002", "questions": [{"id": "role", "options": [["knowledge_check", "\u5bf9\u8bfe\u7a0b\u77e5\u8bc6\u7684\u7406\u89e3\u68c0\u67e5"], ["question_dialogue", "\u4e0e\u8001\u5e08\u56f4\u7ed5\u4e00\u4e2a\u95ee\u9898\u7ee7\u7eed\u8ffd\u95ee\u7684\u5bf9\u8bdd"], ["emerging_idea", "\u4e00\u4e2a\u5c1a\u672a\u6210\u719f\u3001\u4f46\u6709\u6f5c\u529b\u7684\u60f3\u6cd5"], ["practice_connection", "\u628a\u4e66\u672c\u77e5\u8bc6\u4e0e\u4e2a\u4eba\u5b9e\u8df5\u7ed3\u5408\u8d77\u6765\u7684\u56de\u5e94"]], "text": "\u8fd9\u4f4d\u8001\u5e08\u628a\u5b66\u751f\u5199\u4f5c\u770b\u5f97\u66f4\u50cf\u4ec0\u4e48\uff1f"}, {"id": "opinion_acceptance", "options": [["course_consensus", "\u66f4\u5e0c\u671b\u5b66\u751f\u6cbf\u7740\u8bfe\u7a0b\u5df2\u6709\u7ed3\u8bba\u8868\u8fbe"], ["bounded_view", "\u63a5\u53d7\u5728\u8bfe\u7a0b\u6846\u67b6\u5185\u63d0\u51fa\u6709\u9650\u770b\u6cd5"], ["reasoned_exploration", "\u613f\u610f\u8ddf\u968f\u5c1a\u672a\u6210\u719f\u3001\u4f46\u6709\u7406\u7531\u7684\u63a2\u7d22"], ["challenge_course", "\u9f13\u52b1\u5b66\u751f\u6311\u6218\u6216\u6539\u5199\u8bfe\u5802\u4e2d\u7684\u65e2\u6709\u5224\u65ad"]], "text": "\u4ed6\u5bf9\u5b66\u751f\u4e2a\u4eba\u89c2\u70b9\u7684\u63a5\u53d7\u7a0b\u5ea6\uff1f"}, {"id": "course_relation", "options": [["close_framework", "\u5e0c\u671b\u5b66\u751f\u7d27\u8d34\u8bfe\u7a0b\u6846\u67b6"], ["course_to_external", "\u5141\u8bb8\u5b66\u751f\u7528\u8bfe\u7a0b\u6982\u5ff5\u89e3\u91ca\u5916\u90e8\u73b0\u8c61"], ["outside_to_course", "\u671f\u5f85\u5b66\u751f\u8fd0\u7528\u8bfe\u672c\u5916\u7684\u77e5\u8bc6\u53bb\u89e3\u91ca\u8bfe\u5802\u4e2d\u7684\u5185\u5bb9"], ["background_only", "\u4e0d\u4ecb\u610f\u8bfe\u7a0b\u5185\u5bb9\u53ea\u4f5c\u4e3a\u8f83\u5f31\u7684\u80cc\u666f"]], "text": "\u4ed6\u4e0e\u8bfe\u7a0b\u5185\u5bb9\u7684\u5173\u7cfb\u66f4\u63a5\u8fd1\u54ea\u4e00\u79cd\uff1f"}], "title": "\u5c0f\u8bba\u6587\u8bfb\u8005\u4fa7\u5199\uff08\u9009\u586b\uff09"}, "essay_free": {"note_label": "\u5173\u4e8e\u8bfb\u8005\u7684\u8865\u5145\u63cf\u8ff0\uff08\u9009\u586b\uff09", "note_placeholder": "\u4f8b\u5982\uff1a\u8bfb\u8005\u5e73\u65f6\u6709\u7a33\u5b9a\u7684\u6587\u5b66\u9605\u8bfb\u4e60\u60ef\uff0c\u613f\u610f\u63a5\u53d7\u6709\u9650\u81ea\u6211\u6307\u6d89\u3002", "questions": [{"id": "reading_depth", "options": [["first_pass", "\u5e0c\u671b\u4e00\u6b21\u9605\u8bfb\u5c31\u7406\u89e3\u5927\u90e8\u5206\u610f\u601d"], ["guided", "\u63a5\u53d7\u4e00\u6761\u6e05\u695a\u7ebf\u7d22\u548c\u5c11\u91cf\u7559\u767d"], ["active", "\u80fd\u4e3b\u52a8\u8865\u8db3\u610f\u8c61\u3001\u8df3\u8dc3\u4e4b\u95f4\u7684\u5173\u7cfb"], ["reread", "\u613f\u610f\u53cd\u590d\u9605\u8bfb\u9ad8\u5bc6\u5ea6\u3001\u591a\u4e49\u6216\u975e\u7ebf\u6027\u7684\u6587\u672c"]], "text": "\u8bfb\u8005\u901a\u5e38\u80fd\u4ee5\u600e\u6837\u7684\u6df1\u5ea6\u8fdb\u5165\u6587\u672c\uff1f"}, {"id": "implicitness", "options": [["explicit", "\u504f\u597d\u628a\u60c5\u611f\u548c\u610f\u4e49\u8bf4\u5f97\u8f83\u660e\u767d"], ["partial", "\u63a5\u53d7\u5c40\u90e8\u9690\u55bb\u548c\u672a\u8bf4\u5c3d\u7684\u5730\u65b9"], ["imagistic", "\u559c\u6b22\u7528\u610f\u8c61\u3001\u6697\u793a\u66ff\u4ee3\u76f4\u8bf4"], ["ambiguous", "\u4e50\u4e8e\u9762\u5bf9\u6b67\u4e49\u548c\u4e0d\u53ef\u5b8c\u5168\u89e3\u91ca\u7684\u90e8\u5206"]], "text": "\u4ed6\u5bf9\u542b\u84c4\u8868\u8fbe\u7684\u63a5\u53d7\u7a0b\u5ea6\uff1f"}, {"id": "desired_gain", "options": [["aesthetic", "\u7f8e\u5b66\u4f53\u9a8c"], ["resonance", "\u60c5\u611f\u5171\u9e23"], ["knowledge", "\u77e5\u8bc6\u6216\u5bf9\u73b0\u5b9e\u7684\u7406\u89e3"], ["perspective", "\u4e00\u4e2a\u65b0\u7684\u95ee\u9898\u6216\u770b\u95ee\u9898\u7684\u89d2\u5ea6"]], "text": "\u4ed6\u671f\u671b\u4ece\u6587\u672c\u4e2d\u83b7\u5f97\u4ec0\u4e48\uff1f"}], "title": "\u6742\u6587/\u6563\u6587\u8bfb\u8005\u4fa7\u5199\uff08\u9009\u586b\uff09"}, "professional": {"note_label": "\u5173\u4e8e\u8fd9\u4f4d\u8001\u5e08\u7684\u8865\u5145\u63cf\u8ff0\uff08\u9009\u586b\uff09", "note_placeholder": "\u4f8b\u5982\uff1a\u4ed6\u4e0d\u53cd\u5bf9\u65b0\u89c2\u70b9\uff0c\u4f46\u7279\u522b\u8ba8\u538c\u6ca1\u6709\u5904\u7406\u53cd\u4f8b\u7684\u7ed3\u8bba\u3002", "questions": [{"id": "stage", "options": [["young", "\u9752\u5e74\u6559\u5e08\uff0c\u4ecd\u5728\u79ef\u6781\u5438\u6536\u65b0\u6846\u67b6"], ["midcareer", "\u4e2d\u751f\u4ee3\u6559\u5e08\uff0c\u91cd\u89c6\u8bfe\u7a0b\u4f53\u7cfb\u4e0e\u4e2a\u4eba\u5224\u65ad"], ["senior_conservative", "\u8d44\u6df1\u6559\u5e08\uff0c\u66f4\u504f\u5411\u6210\u719f\u3001\u4fdd\u5b88\u7684\u65e2\u6709\u6846\u67b6"], ["uncertain", "\u4e0d\u786e\u5b9a\uff0c\u4e3b\u8981\u4f9d\u636e\u5176\u4ed6\u56de\u7b54"]], "text": "\u8fd9\u4f4d\u8001\u5e08\u5904\u5728\u600e\u6837\u7684\u6559\u5b66/\u5b66\u672f\u9636\u6bb5\uff1f"}, {"id": "innovation", "options": [["consensus", "\u4f18\u5148\u4fe1\u4efb\u73b0\u6709\u8bfe\u7a0b\u5171\u8bc6"], ["limited_revision", "\u63a5\u53d7\u5c40\u90e8\u4fee\u6b63\uff0c\u4f46\u9700\u8981\u5145\u5206\u8bba\u636e"], ["boundary_review", "\u6b22\u8fce\u65b0\u89c6\u89d2\uff0c\u4f46\u4f1a\u4e25\u5389\u8ffd\u95ee\u8fb9\u754c"], ["challenge_friendly", "\u660e\u663e\u504f\u597d\u5177\u6709\u6311\u6218\u6027\u7684\u89e3\u91ca"]], "text": "\u4ed6\u9762\u5bf9\u4e0e\u8bfe\u7a0b\u5e38\u89c4\u4e0d\u540c\u7684\u89c2\u70b9\u65f6\uff0c\u901a\u5e38\u600e\u6837\u53cd\u5e94\uff1f"}, {"id": "focus", "options": [["material_reliability", "\u652f\u6301\u6750\u6599\u662f\u5426\u771f\u5b9e\u3001\u53ef\u9760"], ["internal_logic", "\u6587\u7ae0\u5185\u5728\u903b\u8f91\u662f\u5426\u6210\u7acb"], ["thesis_value", "\u6587\u7ae0\u6838\u5fc3\u89c2\u70b9\u662f\u5426\u6709\u4ef7\u503c"], ["structural_clarity", "\u6587\u7ae0\u7ed3\u6784\u662f\u5426\u6e05\u6670"]], "text": "\u4ed6\u6700\u770b\u91cd\u6587\u7ae0\u7684\u54ea\u4e00\u5904\uff1f"}], "title": "\u4e13\u4e1a\u8bba\u6587\u8bfb\u8005\u4fa7\u5199\uff08\u9009\u586b\uff09"}};
+    const READER_PROFILE_QUESTIONS = {
+        professional: {title: '专业论文读者侧写（选填）', note_label: '关于这位老师的补充描述（选填）', note_placeholder: '例如：重视论据、反例和清楚的结构。', questions: []},
+        essay: {title: '小论文读者侧写（选填）', note_label: '关于这位老师的补充描述（选填）', note_placeholder: '例如：愿意听个人判断，但不喜欢空泛结论。', questions: []},
+        essay_free: {title: '杂文/散文读者侧写（选填）', note_label: '关于读者的补充描述（选填）', note_placeholder: '例如：接受留白、幽默和有限的自我指涉。', questions: []}
+    };
     const PERSONA_DISCLAIMER_ACK_KEY = 'pengu-persona-disclaimer-acknowledged';
     const readerProfileState = {};
     let englishDraftStale = false;
@@ -4478,6 +4483,12 @@
         if (pengu) {
             pengu._farewellCancelled = true;
             clearTimeout(pengu._farewellTimer);
+            clearTimeout(pengu._holdListenerTimer);
+            if (pengu._essayExitContainer && pengu._essayExitHandler) {
+                pengu._essayExitContainer.removeEventListener('click', pengu._essayExitHandler, true);
+            }
+            pengu._essayExitContainer = null;
+            pengu._essayExitHandler = null;
             pengu.classList.remove('pengu-hold', 'pengu-farewell');
             pengu.style.removeProperty('visibility');
         }
@@ -4489,18 +4500,29 @@
         if (!fill) return;
         const bar = fill.parentElement;
         const p = bar.querySelector('.progress-pengu');
-        if (!p) return;
+        const essayContainer = document.getElementById('essayContainer');
+        if (!p || !essayContainer) return;
         p.classList.add('pengu-hold');
-        setTimeout(() => {
-            document.addEventListener('click', function onNext(e) {
-                if (!p.classList.contains('pengu-hold')) return;
-                e.preventDefault();
-                e.stopPropagation();
-                const target = e.target;
-                penguFarewell(p, () => {
-                    if (target && document.contains(target)) target.click();
-                });
-            }, { once: true, capture: true });
+        clearTimeout(p._holdListenerTimer);
+        if (p._essayExitContainer && p._essayExitHandler) {
+            p._essayExitContainer.removeEventListener('click', p._essayExitHandler, true);
+        }
+        p._essayExitContainer = essayContainer;
+        p._essayExitHandler = function onEssayClick(e) {
+            p._essayExitContainer = null;
+            p._essayExitHandler = null;
+            if (!p.classList.contains('pengu-hold')) return;
+            e.preventDefault();
+            e.stopPropagation();
+            const target = e.target;
+            penguFarewell(p, () => {
+                if (target && document.contains(target)) target.click();
+            });
+        };
+        p._holdListenerTimer = setTimeout(() => {
+            if (p.classList.contains('pengu-hold') && p._essayExitHandler) {
+                essayContainer.addEventListener('click', p._essayExitHandler, { once: true, capture: true });
+            }
         }, 80);
     }
     function penguFarewell(p, done) {
@@ -4523,11 +4545,12 @@
             document.body.appendChild(pagePengu);
             p.style.visibility = 'hidden';
 
-            const travel = window.innerWidth - rect.left + 72;
+            const travel = Math.max(120, window.innerWidth - rect.left + pagePengu.offsetWidth + 48);
+            const duration = Math.max(1000, Math.min(1500, Math.round(travel * 2.4)));
             const animation = pagePengu.animate([
                 { transform: 'translateX(0)', opacity: 1 },
-                { transform: `translateX(${travel}px)`, opacity: 0 }
-            ], { duration: 700, easing: 'ease-in', fill: 'forwards' });
+                { transform: `translateX(${travel}px)`, opacity: 1 }
+            ], { duration, easing: 'cubic-bezier(.35,.05,.75,.45)', fill: 'forwards' });
             animation.finished.finally(() => {
                 pagePengu.remove();
                 if (p._farewellCancelled) return;
